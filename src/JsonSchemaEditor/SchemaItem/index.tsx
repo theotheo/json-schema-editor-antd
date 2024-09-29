@@ -674,7 +674,7 @@ function SchemaItem(props: SchemaItemProps) {
                 Enumeration:
               </Col>
               <Col span={20}>
-                <Form.List name="enums">
+                <Form.List name="enum">
                   {(fields, { add, remove }) => (
                     <>
                       <Row>
