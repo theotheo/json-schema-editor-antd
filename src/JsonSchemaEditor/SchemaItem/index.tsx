@@ -72,7 +72,6 @@ function SchemaItem(props: SchemaItemProps) {
   const [schema, setSchema] = useState(props.schema);
   const [formSchema, setFormSchema] = useState<any>();
   const [propertyName, setPropertyName] = useState(props.propertyName);
-  const [schemaTitle, setSchemaTitle] = useState(schema.title);
   const [schemaDescription, setSchemaDescription] = useState(
     schema.description,
   );
@@ -244,22 +243,6 @@ function SchemaItem(props: SchemaItemProps) {
                 changeSchema(namePath, getDefaultSchema(type), 'type');
               }
             }}
-          />
-        </Col>
-        <Col flex={'auto'} style={{ marginLeft: 5 }}>
-          <Input
-            placeholder={'标题'}
-            value={schemaTitle}
-            onBlur={() => {
-              if (changeSchema) {
-                changeSchema(
-                  namePath.concat(getPropertyIndex(schema, 'title')),
-                  schemaTitle,
-                  'title',
-                );
-              }
-            }}
-            onChange={(title) => setSchemaTitle(title.target.value)}
           />
         </Col>
         <Col flex={'auto'} style={{ marginLeft: 5 }}>
