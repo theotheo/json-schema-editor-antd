@@ -154,7 +154,7 @@ function SchemaItem(props: SchemaItemProps) {
       items = items.concat(
         {
           key: 'addNode',
-          label: '同级节点',
+          label: 'Sibling node',
           onClick: () => {
             if (addProperty) {
               addProperty(namePath, false);
@@ -163,7 +163,7 @@ function SchemaItem(props: SchemaItemProps) {
         },
         {
           key: 'addChildNode',
-          label: '子级节点',
+          label: 'Child node',
           onClick: () => {
             if (addProperty) {
               addProperty(namePath, true);
@@ -203,10 +203,10 @@ function SchemaItem(props: SchemaItemProps) {
             status={!isRoot && propertyName.length === 0 ? 'error' : undefined}
             disabled={isRoot || isArrayItems}
             value={isRoot ? 'root' : propertyName}
-            placeholder={'属性名称'}
+            placeholder={'Property name'}
             onBlur={() => {
               if (propertyName?.length === 0) {
-                messageApi.error('属性名称不能为空');
+                messageApi.error('Property name cannot be empty');
                 return;
               }
               if (
@@ -264,7 +264,7 @@ function SchemaItem(props: SchemaItemProps) {
         </Col>
         <Col flex={'auto'} style={{ marginLeft: 5 }}>
           <Input
-            placeholder={'描述'}
+            placeholder={'Description'}
             value={schemaDescription}
             onBlur={() => {
               if (changeSchema) {
@@ -282,7 +282,7 @@ function SchemaItem(props: SchemaItemProps) {
         </Col>
         <Col flex={'72px'} style={{ marginLeft: 5 }}>
           <Row style={{ width: '72px' }}>
-            <Tooltip title={'高级设置'}>
+            <Tooltip title={'Advanced settings'}>
               <Button
                 type={'text'}
                 size={'small'}
@@ -296,7 +296,7 @@ function SchemaItem(props: SchemaItemProps) {
             </Tooltip>
             {!isRoot || !isArrayItems || schema.type === 'object' ? (
               <Dropdown placement="bottom" menu={{ items: addNodeItems() }}>
-                <Tooltip title={'添加节点'}>
+                <Tooltip title={'Add node'}>
                   <Button
                     type={'text'}
                     size={'small'}
@@ -319,7 +319,7 @@ function SchemaItem(props: SchemaItemProps) {
             )}
             <Col flex={'24px'}>
               {isRoot ? (
-                <Tooltip title={'导入Json'}>
+                <Tooltip title={'Import JSON'}>
                   <Button
                     type={'text'}
                     size={'small'}
@@ -329,7 +329,7 @@ function SchemaItem(props: SchemaItemProps) {
                   />
                 </Tooltip>
               ) : !isArrayItems ? (
-                <Tooltip title={'删除节点'}>
+                <Tooltip title={'Delete node'}>
                   <Button
                     danger
                     type={'text'}
@@ -390,11 +390,11 @@ function SchemaItem(props: SchemaItemProps) {
         />
       )}
       <Modal
-        title="高级设置"
+        title="Advanced settings"
         width={700}
         open={advancedModal}
-        okText={'保存'}
-        cancelText={'取消'}
+        okText={'Save'}
+        cancelText={'Cancel'}
         onOk={() => {
           if (!changeSchema) {
             return;
@@ -436,7 +436,7 @@ function SchemaItem(props: SchemaItemProps) {
                 marginBottom: 13,
               }}
             >
-              基本设置
+              Basic settings
             </div>
           )}
           {(isString || isNumber || isInteger || isBoolean) && (
@@ -446,26 +446,26 @@ function SchemaItem(props: SchemaItemProps) {
               style={{ marginBottom: 13 }}
             >
               <Col span={4} style={{ textAlign: 'right' }}>
-                默认值：
+                Default value:
               </Col>
               <Col span={8}>
                 <Form.Item noStyle name={'default'}>
                   {isString && (
                     <Input
                       style={{ width: '100%' }}
-                      placeholder={'请输入默认值'}
+                      placeholder={'Please enter default value'}
                     />
                   )}
                   {(isNumber || isInteger) && (
                     <InputNumber
                       style={{ width: '100%' }}
-                      placeholder={'请输入默认值'}
+                      placeholder={'Please enter default value'}
                     />
                   )}
                   {isBoolean && (
                     <Select
                       style={{ width: '100%' }}
-                      placeholder={'请选择默认值'}
+                      placeholder={'Please select default value'}
                       options={[
                         { value: true, label: 'true' },
                         { value: false, label: 'false' },
@@ -483,7 +483,7 @@ function SchemaItem(props: SchemaItemProps) {
               style={{ marginBottom: 13 }}
             >
               <Col span={4} style={{ textAlign: 'right' }}>
-                最小长度：
+                Minimum length:
               </Col>
               <Col span={8}>
                 <Form.Item noStyle name={'minLength'}>
@@ -496,12 +496,12 @@ function SchemaItem(props: SchemaItemProps) {
                     formatter={(value) =>
                       value ? `${Math.floor(Math.max(value, 0))}` : ''
                     }
-                    placeholder={'请输入最小长度'}
+                    placeholder={'Please enter minimum length'}
                   />
                 </Form.Item>
               </Col>
               <Col span={4} style={{ textAlign: 'right' }}>
-                最大长度：
+                Maximum length:
               </Col>
               <Col span={8}>
                 <Form.Item noStyle name={'maxLength'}>
@@ -514,7 +514,7 @@ function SchemaItem(props: SchemaItemProps) {
                     formatter={(value) =>
                       value ? `${Math.floor(Math.max(value, 0))}` : ''
                     }
-                    placeholder={'请输入最大长度'}
+                    placeholder={'Please enter maximum length'}
                   />
                 </Form.Item>
               </Col>
@@ -528,24 +528,24 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  最小值：
+                  Minimum value:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'minimum'}>
                     <InputNumber
                       style={{ width: '100%' }}
-                      placeholder={'请输入最小值'}
+                      placeholder={'Please enter minimum value'}
                     />
                   </Form.Item>
                 </Col>
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  最大值：
+                  Maximum value:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'maximum'}>
                     <InputNumber
                       style={{ width: '100%' }}
-                      placeholder={'请输入最大值'}
+                      placeholder={'Please enter maximum value'}
                     />
                   </Form.Item>
                 </Col>
@@ -556,24 +556,24 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  排他最小值：
+                  Exclusive minimum value:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'exclusiveMinimum'}>
                     <InputNumber
                       style={{ width: '100%' }}
-                      placeholder={'请输入排他最小值'}
+                      placeholder={'Please enter exclusive minimum value'}
                     />
                   </Form.Item>
                 </Col>
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  排他最大值：
+                  Exclusive maximum value:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'exclusiveMaximum'}>
                     <InputNumber
                       style={{ width: '100%' }}
-                      placeholder={'请输入排他最大值'}
+                      placeholder={'Please enter exclusive maximum value'}
                     />
                   </Form.Item>
                 </Col>
@@ -588,11 +588,13 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  正则匹配：
+                  Regular expression:
                 </Col>
                 <Col span={20}>
                   <Form.Item noStyle name={'pattern'}>
-                    <Input placeholder={'请输入正则匹配公式'} />
+                    <Input
+                      placeholder={'Please enter regular expression formula'}
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -602,14 +604,14 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  格式：
+                  Format:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'format'}>
                     <Select
                       allowClear
                       options={StringFormat}
-                      placeholder={'请选择字符串格式'}
+                      placeholder={'Please select string format'}
                       style={{ width: '100%' }}
                     />
                   </Form.Item>
@@ -625,7 +627,7 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  元素唯一：
+                  Unique items:
                 </Col>
                 <Col span={20}>
                   <Form.Item
@@ -643,7 +645,7 @@ function SchemaItem(props: SchemaItemProps) {
                 style={{ marginBottom: 13 }}
               >
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  最少元素个数：
+                  Minimum number of items:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'minItems'}>
@@ -655,12 +657,12 @@ function SchemaItem(props: SchemaItemProps) {
                       formatter={(value) =>
                         value ? `${Math.floor(Math.max(value, 0))}` : ''
                       }
-                      placeholder={'请输入最少元素个数'}
+                      placeholder={'Please enter minimum number of items'}
                     />
                   </Form.Item>
                 </Col>
                 <Col span={4} style={{ textAlign: 'right' }}>
-                  最多元素个数：
+                  Maximum number of items:
                 </Col>
                 <Col span={8}>
                   <Form.Item noStyle name={'maxItems'}>
@@ -672,7 +674,7 @@ function SchemaItem(props: SchemaItemProps) {
                       formatter={(value) =>
                         value ? `${Math.floor(Math.max(value, 0))}` : ''
                       }
-                      placeholder={'请输入最多元素个数'}
+                      placeholder={'Please enter maximum number of items'}
                     />
                   </Form.Item>
                 </Col>
@@ -686,7 +688,7 @@ function SchemaItem(props: SchemaItemProps) {
               style={{ marginBottom: 13 }}
             >
               <Col span={4} style={{ textAlign: 'right' }}>
-                枚举：
+                Enumeration:
               </Col>
               <Col span={20}>
                 <Form.List name="enums">
@@ -708,12 +710,12 @@ function SchemaItem(props: SchemaItemProps) {
                                   rules={[{ required: true }]}
                                 >
                                   {isString && (
-                                    <Input placeholder="请输入枚举值" />
+                                    <Input placeholder="Please enter enumeration value" />
                                   )}
                                   {(isNumber || isInteger) && (
                                     <InputNumber
                                       style={{ width: '100%' }}
-                                      placeholder="请输入枚举值"
+                                      placeholder="Please enter enumeration value"
                                     />
                                   )}
                                 </Form.Item>
@@ -733,7 +735,7 @@ function SchemaItem(props: SchemaItemProps) {
                               block
                               icon={<PlusOutlined />}
                             >
-                              添加枚举值
+                              Add enumeration value
                             </Button>
                           </Form.Item>
                         </Col>
@@ -753,7 +755,7 @@ function SchemaItem(props: SchemaItemProps) {
               marginBottom: 13,
             }}
           >
-            Json Schema
+            JSON Schema
           </div>
           <MonacoEditor
             height={300}
@@ -775,21 +777,21 @@ function SchemaItem(props: SchemaItemProps) {
       </Modal>
 
       <Modal
-        title="导入"
+        title="Import"
         width={900}
-        okText={'导入'}
-        cancelText={'取消'}
+        okText={'Import'}
+        cancelText={'Cancel'}
         open={importModal}
         onOk={() => {
           if (!importValue || importValue.length === 0) {
-            messageApi.warning('请输入导入的 Json 数据');
+            messageApi.warning('Please enter JSON data to import');
             return;
           }
           let importJson;
           try {
             importJson = JSON.parse(importValue);
           } catch (e) {
-            messageApi.error('导入的内容不是 Json 格式的数据');
+            messageApi.error('The imported content is not in JSON format');
             return;
           }
           let schema;
@@ -816,8 +818,8 @@ function SchemaItem(props: SchemaItemProps) {
             buttonStyle="solid"
             onChange={(type) => setImportType(type.target.value)}
             options={[
-              { value: 'json', label: 'Json' },
-              { value: 'json-schema', label: 'JsonSchema' },
+              { value: 'json', label: 'JSON' },
+              { value: 'json-schema', label: 'JSONSchema' },
             ]}
           />
         </Row>
